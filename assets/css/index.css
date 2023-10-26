@@ -139,7 +139,7 @@ samp {
 pre {
     background-color: var(--highlight-color);
     padding: var(--spacing-2);
-    margin: 0 calc(-1 * var(--spacing-2));
+    overflow-x: auto;
 }
 
 kbd {
@@ -147,7 +147,7 @@ kbd {
 }
 
 code {
-    font-size: .9rem;
+    font-size: 0.9rem;
     background-color: var(--highlight-color);
     padding: 3px 3px;
     border-radius: 2px;
@@ -156,14 +156,14 @@ code {
 blockquote {
     background-color: var(--highlight-color);
     margin: var(--spacing);
-    padding:  var(--spacing) var(--spacing-2);
+    padding: var(--spacing) var(--spacing-2);
 }
 
 details {
     display: block;
     background-color: var(--highlight-color);
     margin: var(--spacing);
-    padding:  var(--spacing) var(--spacing-2);
+    padding: var(--spacing) var(--spacing-2);
     & a {
         text-decoration: none;
     }
@@ -215,7 +215,6 @@ body {
     width: 100%;
     margin: 0;
     max-width: 1224px;
-    margin-inline: auto;
 
     & > header,
     & > main,
@@ -263,7 +262,7 @@ main {
     }
 
     & section {
-        min-width: 100%;
+        align-self: stretch;
         background-color: var(--highlight);
         padding: var(--spacing-2);
         margin: 0 calc(-1 * var(--spacing-2));
@@ -271,25 +270,29 @@ main {
             margin: 0 0 var(--spacing-2);
         }
     }
-     /* List page */
-    & article:not(:only-child) {
-        min-width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        border-bottom: 1px solid var(--secondary-color);
-        & h3 {
-            margin: var(--spacing) 0;
+
+    & article {
+        width: 100%;
+        /* List page */
+        &:not(:only-child) {
+            align-self: stretch;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px solid var(--secondary-color);
+            & h3 {
+                margin: var(--spacing) 0;
+            }
+            & time {
+                padding-left: var(--spacing);
+                flex-shrink: 0;
+            }
         }
-        & time {
-            padding-left: var(--spacing);
-            flex-shrink: 0;
-        }
-    }
-    /* Blog post */
-    & article:only-child {
-        & time {
-            display: block;
+        /* Blog post */
+        &:only-child {
+            & time {
+                display: block;
+            }
         }
     }
 }
@@ -298,8 +301,7 @@ main {
 @media (min-width: 576px) {
     main {
         max-width: 510px;
-        padding-right: 0;
-        padding-left: 0;
+        padding-inline: 0;
     }
 }
 @media (min-width: 768px) {
