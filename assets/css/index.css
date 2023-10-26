@@ -196,10 +196,17 @@ a,
 [role="link"] {
     --primary-color: var(--primary);
     --background-color: transparent;
-
     background-color: var(--background-color);
     color: var(--primary-color);
     text-decoration: var(--text-decoration);
+}
+
+li {
+    margin : var(--spacing) 0;
+}
+
+li > a {
+    padding: var(--spacing) 0;
 }
 
 /* Page layout */
