@@ -4,15 +4,9 @@
         "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --line-height: 1.5;
     --font-weight: 400;
-    --font-size: 100%;
-    --border-radius: 0.25rem;
-    --border-width: 1px;
-    --outline-width: 3px;
+    --font-size: 16px;
     --spacing: 10px;
     --spacing-2: 20px;
-    --form-label-font-weight: var(--font-weight);
-    --transition: 0.2s ease-in-out;
-    --modal-overlay-backdrop-filter: blur(0.25rem);
 }
 
 /* Light Theme */
@@ -37,16 +31,6 @@
         --secondary: rgb(186, 189, 196);
         --background: #131418;
         --highlight: #1a1b21;
-        color-scheme: dark;
-    }
-}
-
-/* High Contrast Theme */
-@media (prefers-contrast: more) {
-    :root {
-        --primary: #fff;
-        --secondary: rgb(234, 234, 234);
-        --background: #000;
         color-scheme: dark;
     }
 }
@@ -102,28 +86,23 @@ h6 {
 }
 
 h1 {
-    --font-size: 2rem;
-    --typography-spacing-vertical: 3rem;
+    font-size: 2rem;
 }
 
 h2 {
-    --font-size: 1.75rem;
-    --typography-spacing-vertical: 2.625rem;
+    font-size: 1.75rem;
 }
 
 h3 {
-    --font-size: 1.5rem;
-    --typography-spacing-vertical: 2.25rem;
+    font-size: 1.5rem;
 }
 
 h4 {
-    --font-size: 1.25rem;
-    --typography-spacing-vertical: 1.874rem;
+    font-size: 1.25rem;
 }
 
 h5 {
-    --font-size: 1.125rem;
-    --typography-spacing-vertical: 1.6875rem;
+    font-size: 1.125rem;
 }
 
 pre,
@@ -137,8 +116,10 @@ samp {
 }
 
 pre {
+    color: var(--secondary-color);
     background-color: var(--highlight-color);
     padding: var(--spacing-2);
+    -webkit-overflow-scrolling: touch;
     overflow-x: auto;
 }
 
@@ -146,10 +127,21 @@ kbd {
     --font-weight: bolder;
 }
 
-code {
-    font-size: 0.9rem;
-    background-color: var(--highlight-color);
-    padding: 3px 3px;
+pre code {
+    background: none;
+    white-space: pre;
+}
+
+p > code,
+li > code,
+dd > code,
+td > code {
+    font-size: 0.8rem;
+    color: var(--background-color);
+    background-color: var(--secondary-color);
+    word-wrap: break-word;
+    box-decoration-break: clone;
+    padding: 0.1rem 0.3rem 0.2rem;
     border-radius: 2px;
 }
 
@@ -273,6 +265,26 @@ main {
 
     & article {
         width: 100%;
+
+        & header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            & time {
+                padding-left: var(--spacing);
+                flex-shrink: 0;
+            }
+        }
+
+        &:only-child {
+            & time {
+                margin-block: var(--spacing);
+                padding-left: var(--spacing);
+                flex-shrink: 0;
+            }
+        }
+
         /* List page */
         &:not(:only-child) {
             align-self: stretch;
@@ -286,12 +298,6 @@ main {
             & time {
                 padding-left: var(--spacing);
                 flex-shrink: 0;
-            }
-        }
-        /* Blog post */
-        &:only-child {
-            & time {
-                display: block;
             }
         }
     }
